@@ -74,4 +74,4 @@ This project is open-source and available under the MIT License.
 
 Author
 
-Developed by  me :"abouelabbes abdellatif "Feel free to contribute and improve this project!
+Developed by  me :"abouelabbes abdellatif "Feel free to 
