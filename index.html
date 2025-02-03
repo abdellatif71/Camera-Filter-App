@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamera Filter App</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        video { width: 100%; max-width: 600px; margin: 10px 0; filter: brightness(100%) contrast(100%) saturate(100%) hue-rotate(0deg) grayscale(0%) sepia(0%) invert(0%); }
+        input { width: 80%; max-width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>Kamera Filter App</h1>
+    <video id="video" autoplay></video>
+    
+    <label>Helligkeit</label>
+    <input type="range" id="brightness" min="50" max="200" value="100">
+    <label>Kontrast</label>
+    <input type="range" id="contrast" min="50" max="200" value="100">
+    <label>Sättigung</label>
+    <input type="range" id="saturation" min="50" max="200" value="100">
+    <label>Farbton</label>
+    <input type="range" id="hue" min="0" max="360" value="0">
+    <label>Graustufen</label>
+    <input type="range" id="grayscale" min="0" max="100" value="0">
+    <label>Sepia</label>
+    <input type="range" id="sepia" min="0" max="100" value="0">
+    <label>Negativ</label>
+    <input type="range" id="invert" min="0" max="100" value="0">
+    
+    <script>
+        const video = document.getElementById('video');
+        const brightness = document.getElementById('brightness');
+        const contrast = document.getElementById('contrast');
+        const saturation = document.getElementById('saturation');
+        const hue = document.getElementById('hue');
+        const grayscale = document.getElementById('grayscale');
+        const sepia = document.getElementById('sepia');
+        const invert = document.getElementById('invert');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; })
+            .catch(error => { console.error('Kamera nicht verfügbar', error); });
+        
+        function updateFilter() {
+            video.style.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%) hue-rotate(${hue.value}deg) grayscale(${grayscale.value}%) sepia(${sepia.value}%) invert(${invert.value}%)`;
+        }
+
+        brightness.addEventListener('input', updateFilter);
+        contrast.addEventListener('input', updateFilter);
+        saturation.addEventListener('input', updateFilter);
+        hue.addEventListener('input', updateFilter);
+        grayscale.addEventListener('input', updateFilter);
+        sepia.addEventListener('input', updateFilter);
+        invert.addEventListener('input', updateFilter);
+    </script>
+</body>
+</html>
